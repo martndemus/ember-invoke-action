@@ -1,25 +1,40 @@
 # Ember-invoke-action
+[![Build Status](https://travis-ci.org/martndemus/ember-invoke-action.svg?branch=master)](https://travis-ci.org/martndemus/ember-invoke-action)
 
 This README outlines the details of collaborating on this Ember addon.
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+```
+ember install ember-invoke-actions
+```
 
-## Running
+## How To
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+You can either use `ember-invoke-action` as a helper function or a mixin.
 
-## Running Tests
+### Mixin usage
 
-* `ember test`
-* `ember test --server`
+```javascript
+import Ember from 'ember';
+import { InvokeActionMixin } from 'ember-invoke-action';
 
-## Building
+export default Ember.Component.extend(InvokeActionMixin, {
+  click(...args) {
+    this.invokeAction('click', ...args);
+  }
+});
+```
 
-* `ember build`
+### Helper usage
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+```javascript
+import Ember from 'ember';
+import invokeAction from 'ember-invoke-action';
+
+export default Ember.Component.extend(InvokeActionMixin, {
+  click(...args) {
+    invokeAction(this, 'click', ...args);
+  }
+});
+```
