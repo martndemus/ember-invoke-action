@@ -1,7 +1,7 @@
 {
   "name": "ember-invoke-action",
   "version": "1.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "A slightly more idiomatic way to invoke actions in your Ember components",
   "directories": {
     "doc": "doc",
     "test": "tests"

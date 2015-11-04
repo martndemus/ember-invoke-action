@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/martndemus/ember-invoke-action.svg?branch=master)](https://travis-ci.org/martndemus/ember-invoke-action)
 [![Ember Observer Score](http://emberobserver.com/badges/ember-invoke-action.svg)](http://emberobserver.com/addons/ember-invoke-action)
 
-This README outlines the details of collaborating on this Ember addon.
+A slightly more idiomatic way to invoke actions in your Ember components.
 
 ## Installation
 
