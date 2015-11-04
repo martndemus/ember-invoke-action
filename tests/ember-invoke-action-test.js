@@ -36,3 +36,14 @@ test('it invokes a action from the mixin', function(assert) {
   this.on('test', () => { assert.ok(true); });
   this.render(hbs`{{mixin-component test=(action "test")}}`);
 });
+
+test('strict invoke action raises when no action was called', function(assert) {
+  assert.throws(() => {
+    this.render(hbs`{{strict-component}}`);
+  }, /No invokable action test was found/);
+});
+
+test('invoke action does not raise when no action was called', function(assert) {
+  assert.expect(0);
+  this.render(hbs`{{test-component}}`);
+});

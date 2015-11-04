@@ -32,7 +32,7 @@ export default Ember.Component.extend(InvokeActionMixin, {
 
 ```javascript
 import Ember from 'ember';
-import invokeAction from 'ember-invoke-action';
+import { invokeAction } from 'ember-invoke-action';
 
 export default Ember.Component.extend({
   click(...args) {
@@ -40,6 +40,13 @@ export default Ember.Component.extend({
   }
 });
 ```
+
+### `strictInvokeAction`
+
+As alternative to `invokeAction` you can call `strictInvokeAction`.
+`strictInvokeAction` is functionally the same as `invokeAction` except for when
+the given action could not be found, then `strictInvokeAction` will raise an
+`AssertionError`.
 
 ## Credits
 
