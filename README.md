@@ -8,7 +8,7 @@ A slightly more idiomatic way to invoke actions in your Ember components.
 ## Installation
 
 ```
-ember install ember-invoke-actions
+ember install ember-invoke-action
 ```
 
 ## How To
