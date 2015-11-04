@@ -40,3 +40,7 @@ export default Ember.Component.extend({
   }
 });
 ```
+
+## Credits
+
+This code was inspired by @miguelcobain, I just made an addon out of it.
