@@ -1,4 +1,4 @@
-# Ember-invoke-action
+# ember-invoke-action
 [![Build Status](https://travis-ci.org/martndemus/ember-invoke-action.svg?branch=master)](https://travis-ci.org/martndemus/ember-invoke-action)
 
 This README outlines the details of collaborating on this Ember addon.
@@ -32,7 +32,7 @@ export default Ember.Component.extend(InvokeActionMixin, {
 import Ember from 'ember';
 import invokeAction from 'ember-invoke-action';
 
-export default Ember.Component.extend(InvokeActionMixin, {
+export default Ember.Component.extend({
   click(...args) {
     invokeAction(this, 'click', ...args);
   }
