@@ -47,3 +47,10 @@ test('invoke action does not raise when no action was called', function(assert) 
   assert.expect(0);
   this.render(hbs`{{test-component}}`);
 });
+
+test('invoke action returns the result of the action', function(assert) {
+  assert.expect(1);
+
+  this.on('test', () => { return () => { assert.ok(true);  }; });
+  this.render(hbs`{{return-component test=(action "test")}}`);
+});

@@ -11,7 +11,7 @@ export var strictInvokeAction = function(object, actionName, ...args) {
   if (typeof action === 'string') {
     object.sendAction(actionName, ...args);
   } else if (typeof action === 'function') {
-    action(...args);
+    return action(...args);
   } else {
     assert(`No invokable action ${actionName} was found`, false);
   }
@@ -19,7 +19,7 @@ export var strictInvokeAction = function(object, actionName, ...args) {
 
 export var invokeAction = function(...args) {
   try {
-    strictInvokeAction(...args);
+    return strictInvokeAction(...args);
   } catch(e) {
     if (!e.message.match(/^Assertion Failed: No invokable action .+ was found$/)) {
       throw e;
@@ -29,11 +29,11 @@ export var invokeAction = function(...args) {
 
 export var InvokeActionMixin = Ember.Mixin.create({
   invokeAction(actionName, ...args) {
-    invokeAction(this, actionName, ...args);
+    return invokeAction(this, actionName, ...args);
   },
 
   strictInvokeAction(actionName, ...args) {
-    strictInvokeAction(this, actionName, ...args);
+    return strictInvokeAction(this, actionName, ...args);
   }
 });
 
