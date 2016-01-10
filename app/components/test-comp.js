@@ -1,0 +1,1 @@
+export { default } from 'ember-invoke-action/components/test-comp';
