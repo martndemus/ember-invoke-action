@@ -13,40 +13,23 @@ ember install ember-invoke-action
 
 ## How To
 
-You can either use `ember-invoke-action` as a helper function or a mixin.
+This add on places the method `invokeAction` on every component. This method will test for a closure action, and if
+none is found, it will return undefined
 
-### Mixin usage
-
-```javascript
-import Ember from 'ember';
-import { InvokeActionMixin } from 'ember-invoke-action';
-
-export default Ember.Component.extend(InvokeActionMixin, {
-  click(...args) {
-    this.invokeAction('click', ...args);
-  }
-});
+```
+let x = invokeAction('onChange', newValue);
 ```
 
-### Helper usage
+## Required Actions
 
-```javascript
-import Ember from 'ember';
-import { invokeAction } from 'ember-invoke-action';
+If an action is required for your component to work, you can add it the the array `requiredActions`. If an action
+is not passed, an error will be thrown.
 
-export default Ember.Component.extend({
-  click(...args) {
-    invokeAction(this, 'click', ...args);
-  }
-});
+```
+  requiredActions: ['onChange']
 ```
 
-### `strictInvokeAction`
-
-As alternative to `invokeAction` you can call `strictInvokeAction`.
-`strictInvokeAction` is functionally the same as `invokeAction` except for when
-the given action could not be found, then `strictInvokeAction` will raise an
-`AssertionError`.
+If you wish to check for required parameters, the array 'requiredParams' is available.
 
 ## Credits
 
