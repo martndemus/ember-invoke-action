@@ -48,6 +48,33 @@ As alternative to `invokeAction` you can call `strictInvokeAction`.
 the given action could not be found, then `strictInvokeAction` will raise an
 `AssertionError`.
 
+### `invoke`
+
+With the `invoke` helper you can call other actions from the `actions` object as
+if it is a closure action.
+
+```javascript
+import Ember from 'ember';
+import { invoke } from 'ember-invoke-action';
+
+export default Ember.Component.extend({
+  actions: {
+    saveModel() {
+      return get(this, 'model').save();
+    },
+
+    closeModal() {
+      set(this, 'modalVisible', false);
+    },
+
+    saveModelAndClose(...args) {
+      invoke(this, 'closeModal');
+      return invoke(this, 'saveModel');
+    }
+  }
+});
+```
+
 ## Credits
 
 This code was inspired by @miguelcobain, I just made an addon out of it.
