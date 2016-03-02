@@ -54,3 +54,10 @@ test('invoke action returns the result of the action', function(assert) {
   this.on('test', () => { return () => { assert.ok(true);  }; });
   this.render(hbs`{{return-component test=(action "test")}}`);
 });
+
+test('invoke calls another action in the actions hash with the right context', function(assert) {
+  assert.expect(1);
+
+  this.on('test', () => { return (val) => { assert.equal(val, 42);  }; });
+  this.render(hbs`{{action-component test=(action "test")}}`);
+});
