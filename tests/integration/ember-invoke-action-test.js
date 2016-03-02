@@ -27,7 +27,7 @@ test('it invokes a sendAction action', function(assert) {
 test('it throws when an  undefined action name is given', function(assert) {
   assert.throws(() => {
     this.render(hbs`{{faulty-component}}`);
-  }, /invoke action must be passed a string as actionName, got null/);
+  }, /The second argument passed to invokeAction must be a string as actionName/);
 });
 
 test('it invokes a action from the mixin', function(assert) {

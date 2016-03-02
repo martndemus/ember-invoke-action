@@ -2,38 +2,35 @@ import Ember from 'ember';
 
 const { assert, get } = Ember;
 
-export var strictInvokeAction = function(object, actionName, ...args) {
-  assert(`invoke action must be passed a string as actionName, got ${actionName}`,
-         typeof actionName === 'string');
+const makeInvokeAction = ({ strict = false } = {}) => {
+  return function(object, actionName, ...args) {
+    assert('The first argument passed to invokeAction must be an object',
+           typeof object === 'object');
+    assert('The second argument passed to invokeAction must be a string as actionName',
+           typeof actionName === 'string');
 
-  const action = get(object, actionName);
+    let action = get(object, actionName);
 
-  if (typeof action === 'string') {
-    object.sendAction(actionName, ...args);
-  } else if (typeof action === 'function') {
-    return action(...args);
-  } else {
-    assert(`No invokable action ${actionName} was found`, false);
-  }
-};
-
-export var invokeAction = function(...args) {
-  try {
-    return strictInvokeAction(...args);
-  } catch(e) {
-    if (!e.message.match(/^Assertion Failed: No invokable action .+ was found$/)) {
-      throw e;
+    if (typeof action === 'string') {
+      object.sendAction(actionName, ...args);
+    } else if (typeof action === 'function') {
+      return action(...args);
+    } else if (strict) {
+      assert(`No invokable action ${actionName} was found`, false);
     }
-  }
+  };
 };
 
-export var InvokeActionMixin = Ember.Mixin.create({
-  invokeAction(actionName, ...args) {
-    return invokeAction(this, actionName, ...args);
+export const invokeAction = makeInvokeAction();
+export const strictInvokeAction = makeInvokeAction({ strict: true });
+
+export const InvokeActionMixin = Ember.Mixin.create({
+  invokeAction() {
+    return invokeAction(this, ...arguments);
   },
 
-  strictInvokeAction(actionName, ...args) {
-    return strictInvokeAction(this, actionName, ...args);
+  strictInvokeAction() {
+    return strictInvokeAction(this, ...arguments);
   }
 });
 
