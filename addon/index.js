@@ -21,12 +21,17 @@ const makeInvokeAction = ({ strict = false } = {}) => {
   };
 };
 
+const getActions = (object) => {
+  return object._actions ? object._actions : object.actions;
+};
+
 const makeInvoke = ({ strict = false } = {}) => {
   return (object, actionName, ...args) => {
-    let action = object.actions && object.actions[actionName];
+    let actions = getActions(object);
+    let action = actions && actions[actionName];
 
     if (typeof action === 'function') {
-      return object.actions[actionName].call(object, ...args);
+      return action.call(object, ...args);
     } else if (strict) {
       assert(`No invokable action ${actionName} was found`, false);
     }
