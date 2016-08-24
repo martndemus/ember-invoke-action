@@ -6,10 +6,16 @@ const makeInvokeAction = ({ strict = false } = {}) => {
   return (object, actionName, ...args) => {
     assert('The first argument passed to invokeAction must be an object',
            typeof object === 'object');
-    assert('The second argument passed to invokeAction must be a string as actionName',
-           typeof actionName === 'string');
 
-    let action = get(object, actionName);
+    let action;
+    if (typeof actionName === 'string') {
+      action = get(object, actionName);
+    } else if (typeof actionName === 'function') {
+      action = actionName;
+    } else {
+      assert('The second argument passed to invokeAction must be a string as actionName or a function',
+             false);
+    }
 
     if (typeof action === 'string') {
       object.sendAction(actionName, ...args);
