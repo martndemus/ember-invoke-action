@@ -17,6 +17,12 @@ test('it invokes a closure action with arguments', function(assert) {
   this.render(hbs`{{test-component test=(action "test")}}`);
 });
 
+test('it invokes a function passed in', function(assert) {
+  assert.expect(1);
+  this.on('test', (x) => { assert.equal(x, 42); });
+  this.render(hbs`{{function-component action=(action "test")}}`);
+});
+
 test('it invokes a sendAction action', function(assert) {
   assert.expect(1);
 
