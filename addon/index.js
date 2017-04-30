@@ -28,7 +28,7 @@ const makeInvokeAction = ({ strict = false } = {}) => {
 };
 
 const getActions = (object) => {
-  return object._actions ? object._actions : object.actions;
+  return object.actions ? object.actions : object._actions;
 };
 
 const makeInvoke = ({ strict = false } = {}) => {
