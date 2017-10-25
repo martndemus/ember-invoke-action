@@ -31,7 +31,7 @@ test('it invokes a sendAction action', function(assert) {
 });
 
 test('it throws when an  undefined action name is given', function(assert) {
-  assert.throws(() => {
+  assert.expectAssertion(() => {
     this.render(hbs`{{faulty-component}}`);
   }, /The second argument passed to invokeAction must be a string as actionName/);
 });
@@ -44,7 +44,7 @@ test('it invokes a action from the mixin', function(assert) {
 });
 
 test('strict invoke action raises when no action was called', function(assert) {
-  assert.throws(() => {
+  assert.expectAssertion(() => {
     this.render(hbs`{{strict-component}}`);
   }, /No invokable action test was found/);
 });
