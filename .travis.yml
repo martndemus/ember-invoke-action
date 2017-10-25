@@ -15,6 +15,11 @@ cache:
   directories:
     - $HOME/.npm
 
+env:
+  global:
+    # See https://git.io/vdao3 for details.
+    - JOBS=1
+
 matrix:
   fast_finish: true
 
