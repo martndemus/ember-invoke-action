@@ -16,7 +16,6 @@ addons:
 cache:
   directories:
     - $HOME/.npm
-    - $HOME/.cache # includes bowers cache
 
 matrix:
   fast_finish: true
@@ -26,9 +25,7 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
 
 install:
-  - npm install -g bower
   - npm install --no-optional
-  - bower install
 
 script:
   - npm test
