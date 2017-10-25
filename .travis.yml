@@ -15,7 +15,8 @@ addons:
 
 cache:
   directories:
-    - node_modules
+    - $HOME/.npm
+    - $HOME/.cache # includes bowers cache
 
 matrix:
   fast_finish: true
