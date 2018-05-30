@@ -1,6 +1,6 @@
-import Ember from 'ember';
-
-const { assert, get } = Ember;
+import Mixin from '@ember/object/mixin';
+import { assert } from '@ember/debug';
+import { get } from '@ember/object';
 
 const makeInvokeAction = ({ strict = false } = {}) => {
   return (object, actionName, ...args) => {
@@ -50,7 +50,7 @@ export const strictInvokeAction = makeInvokeAction({ strict: true });
 export const invoke = makeInvoke();
 export const strictInvoke = makeInvoke({ strict: true });
 
-export const InvokeActionMixin = Ember.Mixin.create({
+export const InvokeActionMixin = Mixin.create({
   invokeAction() {
     return invokeAction(this, ...arguments);
   },

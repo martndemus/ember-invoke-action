@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import { InvokeActionMixin } from 'ember-invoke-action';
 
-export default Ember.Component.extend(InvokeActionMixin, {
+export default Component.extend(InvokeActionMixin, {
   didInsertElement() {
     this.invokeAction('test', 42);
   }

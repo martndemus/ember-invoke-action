@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import { invoke, invokeAction } from 'ember-invoke-action';
 
-export default Ember.Component.extend({
+export default Component.extend({
   myValue: 42,
 
   didInsertElement() {
